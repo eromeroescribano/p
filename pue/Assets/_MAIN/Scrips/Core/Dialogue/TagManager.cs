@@ -45,12 +45,12 @@ public class TagManager
 
     public static string InjectVaiables(string value)
     {
-        var matches = Regex.Matches(value, VariableStore.REGEX_Variable_IDS);
+        var matches = Regex.Matches(value, VariableStore.REGEX_Variable_IDS());
         var matchesList=matches.Cast<Match>().ToList();
         for(int i = 0; i < matchesList.Count; ++i)
         { 
             var match = matchesList[i];
-            string variableName= match.Value.TrimStart(VariableStore.VARIABLE_ID);
+            string variableName= match.Value.TrimStart(VariableStore.VARIABLE_ID());
             if(!VariableStore.TryGetValue(variableName,out object variablevalue))
             {
                 UnityEngine.Debug.LogError($"Variable{variableName} not found");

@@ -162,9 +162,9 @@ public class LogicalLineUtils
                 negate = true;
                 value = value.Substring(1);
             }
-            if (value.StartsWith(VariableStore.VARIABLE_ID))
+            if (value.StartsWith(VariableStore.VARIABLE_ID()))
             {
-                string variableName = value.TrimStart(VariableStore.VARIABLE_ID);
+                string variableName = value.TrimStart(VariableStore.VARIABLE_ID());
                 if(!VariableStore.HasVarable(variableName))
                 {
                     Debug.LogError($"Varieble {variableName} does not exist !");
@@ -180,7 +180,7 @@ public class LogicalLineUtils
             }
             else if(value.StartsWith('\"') && value.EndsWith('\"'))
             {
-                value = TagManager.InjectVaiables(value);
+                value = TagManager.Inject(value);
                 return value.Trim('"');
             }
             else

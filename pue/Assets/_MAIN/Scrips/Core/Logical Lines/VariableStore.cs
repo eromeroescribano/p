@@ -1,18 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class VariableStore
 {
     private static string DEFAULT_DATAB_NAME = "Default";
     private static char DATAB_VARIABLE_ID = '.';
-    public static string REGEX_Variable_IDS = @"[!]?\$[a-zA-Z0-9_.]+";
-    public static char VARIABLE_ID = '$';
+    public static string REGEX_Variable_IDS() { return @"[!]?\$[a-zA-Z0-9_.]+"; }
+    public static char VARIABLE_ID() { return '$'; }
 
 
-    private static Dictionary<string,Database> databases = new Dictionary<string, Database>();
+    private static Dictionary<string,Database> databases = new Dictionary<string, Database>() { { DEFAULT_DATAB_NAME,new Database(DEFAULT_DATAB_NAME) } };
     public class Database
     {
         private Dictionary<string, Variable> variables = new Dictionary<string, Variable>();
@@ -87,7 +89,7 @@ public class VariableStore
         return databases[name];
     }
 
-    public static bool CreateVariable<T>(string name,T defaultValue, Func<T> getter,Action<T> setter)
+    public static bool CreateVariable<T>(string name,T defaultValue, Func<T> getter =null,Action<T> setter = null)
     {
 
         (string[] parts,Database db,string variableName) =ExtractInfo(name);
@@ -148,11 +150,35 @@ public class VariableStore
         databases[DEFAULT_DATAB_NAME] = new Database(DEFAULT_DATAB_NAME);
     }
 
-    public static void PriAllDatabases()
+    public static void PrintAllDatabases()
     {
         foreach(KeyValuePair<string,Database> dbEntry in databases)
         {
-            Debug.Log($"database: '{dbEntry.Key}'");
+            Debug.Log($"database: '<color=#FFB145>{dbEntry.Key}'</color>");
         }
+    }
+    public static void PrintAllVariables(Database database=null)
+    {
+        if (database != null)
+        {
+            PrintAllDatabasesVariables(database);
+            return;
+        }
+        foreach (var dbEntry in databases)
+        {
+            PrintAllDatabasesVariables(dbEntry.Value);
+        }
+    }
+    public static void PrintAllDatabasesVariables(Database database)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine($"Database '<color=#FFB145>{database.name}'</color>");
+        foreach(KeyValuePair<string,Variable>variablePair in database.GetVariables())
+        {
+            string variableName = variablePair.Key;
+            object variableValue = variablePair.Value.Get();
+            sb.AppendLine($"<color=#FFB145>Variable [{variableName}]</color> ='<color=#FFB22D>{variableValue}'</color>");
+        }
+        Debug.Log(sb.ToString());
     }
 }

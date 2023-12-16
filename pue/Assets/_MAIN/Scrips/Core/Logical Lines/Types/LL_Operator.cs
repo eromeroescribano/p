@@ -22,7 +22,7 @@ public class LL_Operator : ILogicalLine
             Debug.LogError($"Invalid command: {trimmedLine}");
             yield break;
         }
-        string vari= parts[0].Trim().TrimStart(VariableStore.VARIABLE_ID);
+        string vari= parts[0].Trim().TrimStart(VariableStore.VARIABLE_ID());
         string op = parts[1].Trim();
         string[] remainingPars=new string[parts.Length-2];
         Array.Copy(parts,2, remainingPars,0,parts.Length-2);
@@ -35,7 +35,46 @@ public class LL_Operator : ILogicalLine
     }
     private void ProcessOperators(string variable, string op , object value) 
     {
-        
+        if(VariableStore.TryGetValue(variable,out object currentValue))
+        {
+            ProcessOpOnVariable(variable, op, value, currentValue);
+        }
+        else if (op =="=")
+        {
+            VariableStore.CreateVariable(variable, value);
+        }
+    }
+    private void ProcessOpOnVariable(string variable,string op, object value,object currentValue)
+    {
+        switch (op) 
+        {
+            case "=":
+                VariableStore.TrySetValue(variable, value);
+                break;
+            case "+=":
+                VariableStore.TrySetValue(variable, ConcatenateOfAdd(value, currentValue));
+                break;
+            case "-=":
+                VariableStore.TrySetValue(variable, Convert.ToDouble(value) - Convert.ToDouble(currentValue));
+                break;
+            case "*=":
+                VariableStore.TrySetValue(variable, Convert.ToDouble(value) * Convert.ToDouble(currentValue));
+                break;
+            case "/=":
+                VariableStore.TrySetValue(variable, Convert.ToDouble(value) / Convert.ToDouble(currentValue));
+                break;
+            default:
+                Debug.LogError($"Invalid operator: {op}");
+                break;
+        }
+    }
+    private object ConcatenateOfAdd(object value, object currentValue)
+    {
+        if(value is string)
+        {
+            return currentValue.ToString()+value;
+        }
+        return Convert.ToDouble(currentValue) + Convert.ToDouble(value);
     }
     public bool Maches(DIALOGUE_LINE lINE)
     {
