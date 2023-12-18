@@ -26,6 +26,8 @@ public class DialogueSystem : MonoBehaviour
     public static DialogueSystem Instance() { return instance; }
     bool init = false;
     public DialogueContainer GetDialogueContainer() { return dialogueContainer; }
+    [SerializeField]private DialogueContinuePront pront;
+    public DialogueContinuePront GetPront() {  return pront; }
     private CanvasGroupController cgController;
     public delegate void DialogueSystemEvent();
     event DialogueSystemEvent UserPrompt_Next;

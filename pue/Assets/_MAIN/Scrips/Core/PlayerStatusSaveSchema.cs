@@ -79,7 +79,7 @@ public class PlayerStatusSaveSchema : ScriptableObject
     }
     public void loadIntoSchema(PlayerStatusSaveSchema newStatus)
     {
-        this.gameVariables = newStatus.gameVariables;
+        //this.gameVariables = newStatus.gameVariables;
         SaveDictionaryValues();
     }
 

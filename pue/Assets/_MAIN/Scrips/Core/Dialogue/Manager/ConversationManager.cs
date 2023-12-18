@@ -120,7 +120,7 @@ public class ConversationManager
 
         if (line.HasSpeaker()) 
         { 
-            DialogueSystem.Instance().ShowName(TagManager.Inject(line.GetSpeaker().Displayname()));
+            DialogueSystem.Instance().ShowName(TagManager.Inject(line.GetSpeaker().Displayname(),true, true));
                 
             BacklogPanel.Instance().PutInTest(@$"{line.GetSpeaker().Displayname()} '{line.GetDialogue().GetRawData()}'");
 
@@ -218,11 +218,12 @@ public class ConversationManager
     
     IEnumerator WaitForUserInput()
     {
-
+        DialogueSystem.Instance().GetPront().Show();
         while (!userPrompt)
         { 
             yield return null; 
         }
+        DialogueSystem.Instance().GetPront().Hide();
         userPrompt = false;
     }
 
