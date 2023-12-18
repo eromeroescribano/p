@@ -5,13 +5,13 @@ using UnityEngine.SocialPlatforms;
 
 public class LL_input : ILogicalLine
 {
-    public string keyword()
+    public string Keyword()
     {
         return "input";
     }
     public IEnumerator Execute(DIALOGUE_LINE line)
     {
-        string title=line.GetDialogue().getRawData();
+        string title=line.GetDialogue().GetRawData();
         InputPanel panel = InputPanel.Instance();
         panel.Show(title);
         while(panel.getIsWaitingOnUserInput())
@@ -21,6 +21,6 @@ public class LL_input : ILogicalLine
     }
     public bool Maches(DIALOGUE_LINE line)
     {
-        return (line.hasSpeaker() && line.GetSpeaker().getName().ToLower() == keyword());
+        return (line.HasSpeaker() && line.GetSpeaker().GetName().ToLower() == Keyword());
     }
 }

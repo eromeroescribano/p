@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ILogicalLine
 {
-    string keyword();
-    bool Maches(DIALOGUE_LINE lINE);
+    string Keyword();
+    bool Maches(DIALOGUE_LINE line);
     IEnumerator Execute(DIALOGUE_LINE data);
 }

@@ -6,16 +6,16 @@ using UnityEngine;
 public class DL_SPEAKER_DATA
 {
     private string rawData = string.Empty;
-    public string getRawText() { return rawData; }
+    public string GetRawText() { return rawData; }
     private string name, castName;
-    public string displayname() { return castName != string.Empty ? castName : name; }
+    public string Displayname() { return castName != string.Empty ? castName : name; }
     private Vector2 castPosition;
     private List<(int layer, string expresion)> CastExpresion;
 
-    public string getName() {  return name; } 
-    public string getCastName() {  return castName; } 
-    public Vector2 getCastPosition() {  return castPosition; }
-    public List<(int layer, string expresion)> getCastExpresion() { return CastExpresion; }
+    public string GetName() {  return name; } 
+    public string GetCastName() {  return castName; } 
+    public Vector2 GetCastPosition() {  return castPosition; }
+    public List<(int layer, string expresion)> GetCastExpresion() { return CastExpresion; }
 
     private string NAMECAST_ID = " as ";
     private string POSITIONCAST_ID = " at ";

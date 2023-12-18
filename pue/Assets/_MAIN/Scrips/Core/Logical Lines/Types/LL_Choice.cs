@@ -6,17 +6,17 @@ using static LogicalLineUtils.Encapsulation;
 public class LL_Choice : ILogicalLine
 {
     private char CHOICE_IDENTIFIER = '-';
-    public string keyword()
+    public string Keyword()
     {
         return "choice";
     }
     public IEnumerator Execute(DIALOGUE_LINE line)
     {
-        var currentConversation = DialogueSystem.Instance().getConversationManager().getConvesation();
-        var progress = DialogueSystem.Instance().getConversationManager().getProgress();
+        var currentConversation = DialogueSystem.Instance().GetConversationManager().GetConvesation();
+        var progress = DialogueSystem.Instance().GetConversationManager().GetProgress();
         EncapsulatedData data = RipEncapsulatedData(currentConversation, progress, ripHeadEncap:true);
         List<Choice> choices = getChoicesFromData(data);
-        string title = line.GetDialogue().getRawData();
+        string title = line.GetDialogue().GetRawData();
         ChoicePanel panel = ChoicePanel.Instance();
         string[] choiceTitles = choices.Select(c=> c.getTitle()).ToArray();
         panel.Show(title, choiceTitles);
@@ -26,13 +26,13 @@ public class LL_Choice : ILogicalLine
         }
         Choice SelectChoice = choices[panel.getLastDecision().getAnswerIndex()];
         
-        Convesation newConversation =new Convesation(SelectChoice.getResultLines());
-        DialogueSystem.Instance().getConversationManager().getConvesation().setProgress(data.getEndingIndex());
-        DialogueSystem.Instance().getConversationManager().EnqueuePriority(newConversation);
+        Conversation newConversation =new Conversation(SelectChoice.getResultLines());
+        DialogueSystem.Instance().GetConversationManager().GetConvesation().setProgress(data.GetEndingIndex());
+        DialogueSystem.Instance().GetConversationManager().EnqueuePriority(newConversation);
     }
     public bool Maches(DIALOGUE_LINE lINE)
     {
-        return (lINE.hasSpeaker() && lINE.GetSpeaker().getName().ToLower() == keyword());
+        return (lINE.HasSpeaker() && lINE.GetSpeaker().GetName().ToLower() == Keyword());
     }
     
     private List<Choice> getChoicesFromData(EncapsulatedData data)
@@ -42,7 +42,7 @@ public class LL_Choice : ILogicalLine
         bool isFirstChoice = true;
         Choice choice = new Choice();
         choice.Iniciate();
-        foreach (var line in data.getLines().Skip(1))
+        foreach (var line in data.GetLines().Skip(1))
         {
             if(IsChoiceStart(line) && encpsulationDepth ==1)
             {

@@ -13,9 +13,9 @@ public class ChoicePanel : MonoBehaviour
     private static ChoicePanel instance;
     public static ChoicePanel Instance() { return instance; }
 
-    [SerializeField] private float BUTTON_MIN_WIDTH = 50;
-    [SerializeField] private float BUTTON_MAX_WIDTH = 1000;
-    [SerializeField] private float BUTTON_WIDTH_PADDING = 25;
+     private float BUTTON_MIN_WIDTH = 50;
+     private float BUTTON_MAX_WIDTH = 1000;
+     private float BUTTON_WIDTH_PADDING = 25;
 
     private float BUTTON_HEIGHT_PERLINE = 50f;
     private float BUTTON_HEIGHT_PADDING = 20;
@@ -87,7 +87,7 @@ public class ChoicePanel : MonoBehaviour
         {
             button.getLayout().preferredWidth = maxWidth;
         }
-        for(int i=0; i<choices.Length;++i)
+        for(int i=0; i<buttons.Count;++i)
         {
             bool Show =(i<choices.Length);
             if (i == 0) 

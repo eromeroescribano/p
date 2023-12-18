@@ -16,9 +16,9 @@ public class AutoReader : MonoBehaviour
     private TextArchitect architect;
     private bool skip=false;
     private float speed = 1f;
-    public bool getSkip() { return skip; }
-    public float getSpeed() { return speed; }
-    public bool isOn() { return co_runing != null; }
+    public bool GetSkip() { return skip; }
+    public float GetSpeed() { return speed; }
+    public bool IsOn() { return co_runing != null; }
     private Coroutine co_runing = null;
     [SerializeField]private TextMeshProUGUI statusText;
     public void Initialize(ConversationManager conversation)
@@ -29,12 +29,12 @@ public class AutoReader : MonoBehaviour
     }
     public void Enable()
     {
-        if (isOn()) { return; }
+        if (IsOn()) { return; }
         co_runing = StartCoroutine(AutoRead());
     }
     public void Disable()
     {
-        if (!isOn()) { return; }
+        if (!IsOn()) { return; }
         StopCoroutine(co_runing);
         skip = false;
         co_runing = null;
@@ -47,23 +47,23 @@ public class AutoReader : MonoBehaviour
             Disable();
             yield break;
         }
-        if(!architect.isBuilding() && architect.currentText() != string.Empty)
+        if(!architect.IsBuilding() && architect.CurrentText() != string.Empty)
         {
-            DialogueSystem.Instance().onAutoPressed();
+            DialogueSystem.Instance().OnAutoPressed();
         }
         while(conversationManager.IsRunning())
         {
             if(!skip)
             {
-                while(!architect.isBuilding() && !conversationManager.getWatingAuto())
+                while(!architect.IsBuilding() && !conversationManager.GetWatingAuto())
                 { yield return null; }
 
                 float timeStarted=Time.time;
 
-                while (!architect.isBuilding() || conversationManager.getWatingAuto())
+                while (!architect.IsBuilding() || conversationManager.GetWatingAuto())
                 { yield return null; }
 
-                float timeRead = Mathf.Clamp(((float) architect.tmpro().textInfo.characterCount/DEFAUTL_CHARACTER), MIN_READ_TIME, MAX_READ_TIME);
+                float timeRead = Mathf.Clamp(((float) architect.Tmpro().textInfo.characterCount/DEFAUTL_CHARACTER), MIN_READ_TIME, MAX_READ_TIME);
                 timeRead = Mathf.Clamp((timeRead-(Time.time-timeStarted)),MIN_READ_TIME,MAX_READ_TIME);
                 timeRead = (timeRead / speed) + READER_TIME_PADING;
                 yield return new WaitForSeconds(timeRead);
@@ -73,7 +73,7 @@ public class AutoReader : MonoBehaviour
                 architect.Forcecompleted();
                 yield return new WaitForSeconds(0.05f);
             }
-            DialogueSystem.Instance().onAutoPressed();
+            DialogueSystem.Instance().OnAutoPressed();
         }
     }
     public void Toggle_Auto()
@@ -82,7 +82,7 @@ public class AutoReader : MonoBehaviour
         { Enable(); }
         else
         {
-            if(!isOn())
+            if(!IsOn())
             { Enable(); }
             else
                 Disable();
@@ -96,7 +96,7 @@ public class AutoReader : MonoBehaviour
         { Enable(); }
         else
         {
-            if (!isOn())
+            if (!IsOn())
             { Enable(); }
             else
                 Disable();

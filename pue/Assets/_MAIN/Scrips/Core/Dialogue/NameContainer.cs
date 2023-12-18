@@ -8,9 +8,11 @@ public class NameContainer
 {
     [SerializeField] private GameObject root;
     [SerializeField] private TextMeshProUGUI nameText;
+    CanvasGroup can;
     public void Show(string maneToShow =" ")
     {
-        root.SetActive(true);
+        can = root.GetComponent<CanvasGroup>();
+        can.alpha=1;
         if (maneToShow != string.Empty ) 
         {
             nameText.text = maneToShow;
@@ -18,6 +20,8 @@ public class NameContainer
     }
     public void Hide() 
     {
-        root.SetActive(false);
+        can = root.GetComponent<CanvasGroup>();
+        can.alpha = 0;
+        //root.SetActive(false);
     }
 }

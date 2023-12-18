@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.EventSystems.EventTrigger; 
 
 public class VariableStore
 {
     private static string DEFAULT_DATAB_NAME = "Default";
-    private static char DATAB_VARIABLE_ID = '.';
+    public static char DATAB_VARIABLE_ID() { return'.'; }
     public static string REGEX_Variable_IDS() { return @"[!]?\$[a-zA-Z0-9_.]+"; }
     public static char VARIABLE_ID() { return '$'; }
 
@@ -121,7 +121,7 @@ public class VariableStore
     }
     private static (string[], Database,string) ExtractInfo(string info)
     {
-        string[] parts = info.Split(DATAB_VARIABLE_ID);
+        string[] parts = info.Split(DATAB_VARIABLE_ID());
         Database db= parts.Length > 1 ? GetDatabase(parts[0]):defaultDatabase;
         string variableName = parts.Length > 1 ? parts[1] : parts[0];
         return (parts,db, variableName);
@@ -130,7 +130,7 @@ public class VariableStore
 
     public static bool HasVarable(string name) 
     {
-        string[] parts = name.Split(DATAB_VARIABLE_ID);
+        string[] parts = name.Split(DATAB_VARIABLE_ID());
         Database db = parts.Length > 1 ? GetDatabase(parts[0]) : defaultDatabase;
         string variableName = parts.Length > 1 ? parts[1] : parts[0];
         return db.GetVariables().ContainsKey(variableName);

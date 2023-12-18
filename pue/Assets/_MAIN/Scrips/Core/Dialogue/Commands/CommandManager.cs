@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
-using static DL_COMMAND_DATA;
 
 public class CommandManager : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class CommandManager : MonoBehaviour
     {
         Delegate Command = database.GetCommand(commandName);
 
-        if (Command != null)
+        if (Command == null)
         { return null; }
         return StartProcess(commandName,Command,args);
     }

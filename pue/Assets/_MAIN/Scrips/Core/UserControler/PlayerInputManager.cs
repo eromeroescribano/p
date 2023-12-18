@@ -10,11 +10,15 @@ public class PlayerInputManager : MonoBehaviour
         { 
             PromptAdvance(); 
         }
+        if(Input.mouseScrollDelta.y>0f)
+        {
+            BacklogPanel.Instance().Show();
+        }
 
     }
     public void PromptAdvance()
     {
-        DialogueSystem.Instance().onPressed();
+        DialogueSystem.Instance().OnPressed();
 
     }
 }

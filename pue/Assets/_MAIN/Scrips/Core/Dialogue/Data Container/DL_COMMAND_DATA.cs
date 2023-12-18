@@ -9,19 +9,19 @@ public class DL_COMMAND_DATA
     private char COMMANDSPLITTER_ID = ',';
     private char ARGUMENTCONTAINER_ID = '(';
     private string WAITCOMMAND_ID = "[wait]";
-    public List<Command> getCommands() {  return commands; }
+    public List<Command> GetCommands() {  return commands; }
     public class Command
     {
         string name;
         string[] arguments;
         bool waitForComplete;
 
-        public void setName(string name) { this.name=name; }
-        public string getName() {  return name; }
-        public void setArguments(string[] arguments) { this.arguments=arguments;}
-        public string[] getArguments() { return arguments;}
-        public bool getWait() { return waitForComplete; }
-        public void setWait(bool wait) { waitForComplete = wait; }
+        public void SetName(string name) { this.name=name; }
+        public string GetName() {  return name; }
+        public void SetArguments(string[] arguments) { this.arguments=arguments;}
+        public string[] GetArguments() { return arguments;}
+        public bool GetWait() { return waitForComplete; }
+        public void SetWait(bool wait) { waitForComplete = wait; }
     }
 
     public DL_COMMAND_DATA(string rawCommands)
@@ -36,17 +36,18 @@ public class DL_COMMAND_DATA
         {
             Command command=new Command();
             int index =cmd.IndexOf(ARGUMENTCONTAINER_ID);
-            command.setName(cmd.Substring(0, index).Trim());
-            if(command.getName().ToLower().StartsWith(WAITCOMMAND_ID))
+            command.SetName(cmd.Substring(0, index).Trim());
+            if(command.GetName().ToLower().StartsWith(WAITCOMMAND_ID))
             { 
-                command.setName(command.getName().Substring(WAITCOMMAND_ID.Length));
-                command.setWait(true);
+                command.SetName(command.GetName().Substring(WAITCOMMAND_ID.Length));
+                command.SetWait(true);
             }
             else
             {
-                command.setWait(false);
+                command.SetWait(false);
             }
-            command.setArguments(GetArgs(cmd.Substring(index+1, cmd.Length-index-2)));
+            command.SetArguments(GetArgs(cmd.Substring(index+1, cmd.Length-index-2)));
+            result.Add(command);
         }
         return result;
     }

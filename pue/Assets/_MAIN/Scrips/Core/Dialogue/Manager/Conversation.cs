@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Convesation
+public class Conversation
 {
     private List<string> lines = new List<string>();
     private int progress = 0;
 
-    public Convesation(List<string> list, int progress = 0)
+    public Conversation(List<string> list, int progress = 0)
     {
         this.lines = list;
         this.progress = progress;

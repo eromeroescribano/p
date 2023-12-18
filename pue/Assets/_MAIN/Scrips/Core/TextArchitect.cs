@@ -10,25 +10,27 @@ public class TextArchitect
 
     private TextMeshProUGUI tmpro_ui;
     private TextMeshPro tmpro_word;
-    public TMP_Text tmpro()
+
+    public TMP_Text Tmpro()
     {
         if (tmpro_ui != null)
         { return tmpro_ui; }
         else
         { return tmpro_word; }
     }
-    public string currentText() { return tmpro().text; }
+    public string CurrentText() { return Tmpro().text; }
     private string targetText = "";
-    public string getTargetText() { return targetText; }
+    public string GetTargetText() { return targetText; }
     private string preText = "";
-    public string getPreText() { return preText; }
+
+    public string GetPreText() { return preText; }
 
     public string fullTargetText() { return preText + targetText; }
     public enum BuildMethod { instant, typewriter, fade }
 
     private BuildMethod buildMethod = BuildMethod.typewriter;
-    public void setBuildMethod(BuildMethod buildMethod) { this.buildMethod = buildMethod; }
-    public Color textColor { get { return tmpro().color; } set { tmpro().color = value; } }
+    public void SetBuildMethod(BuildMethod buildMethod) { this.buildMethod = buildMethod; }
+    public Color textColor { get { return Tmpro().color; } set { Tmpro().color = value; } }
     public float speed { get { return baseSpeed * speedMultiplier; } set { speedMultiplier = value; } }
     private float baseSpeed = 1;
     private float speedMultiplier = 1;
@@ -37,8 +39,8 @@ public class TextArchitect
     private int characterMultiplier = 1;
 
     private bool hurryUp = false;
-    public void setHurryUp(bool hurryUp) { this.hurryUp = hurryUp; }
-    public bool getHurryUp() { return hurryUp; }
+    public void SetHurryUp(bool hurryUp) { this.hurryUp = hurryUp; }
+    public bool GetHurryUp() { return hurryUp; }
 
     public TextArchitect(TextMeshProUGUI tmpro_ui)
     {
@@ -55,32 +57,32 @@ public class TextArchitect
         preText = "";
         targetText = text;
         Stop();
-        buildProcess = tmpro().StartCoroutine(Building());
+        buildProcess = Tmpro().StartCoroutine(Building());
 
         return buildProcess;
     }
     public Coroutine Append(string text)
     {
-        preText = tmpro().text;
+        preText = Tmpro().text;
         targetText = text;
         Stop();
-        buildProcess = tmpro().StartCoroutine(Building());
+        buildProcess = Tmpro().StartCoroutine(Building());
         return buildProcess;
     }
 
     private Coroutine buildProcess = null;
 
-    public bool isBuilding() { return buildProcess != null; }
+    public bool IsBuilding() { return buildProcess != null; }
     public void Stop()
     {
-        if (!isBuilding()) { return; }
-        tmpro().StopCoroutine(buildProcess);
+        if (!IsBuilding()) { return; }
+        Tmpro().StopCoroutine(buildProcess);
         buildProcess = null;
     }
     IEnumerator Building()
     {
         Prepare();
-        switch(buildMethod)
+        switch (buildMethod)
         {
             case BuildMethod.typewriter:
                 yield return Buid_Typewriter();
@@ -102,11 +104,11 @@ public class TextArchitect
         switch (buildMethod)
         {
             case BuildMethod.typewriter:
-                tmpro().maxVisibleCharacters = tmpro().textInfo.characterCount;
+                Tmpro().maxVisibleCharacters = Tmpro().textInfo.characterCount;
                 break;
             case BuildMethod.fade:
                 break;
-                
+
         }
         Stop();
         OnConplete();
@@ -126,29 +128,29 @@ public class TextArchitect
                 Prepare_Fade();
                 break;
         }
-        
+
     }
     private void Prepare_Instant()
     {
-        tmpro().color = tmpro().color;
-        tmpro().text = fullTargetText();
-        tmpro().ForceMeshUpdate();
-        tmpro().maxVisibleCharacters=tmpro().textInfo.characterCount;
+        Tmpro().color = Tmpro().color;
+        Tmpro().text = fullTargetText();
+        Tmpro().ForceMeshUpdate();
+        Tmpro().maxVisibleCharacters = Tmpro().textInfo.characterCount;
     }
     private void Prepare_Typewriter()
     {
-        tmpro().color = tmpro().color;
-        tmpro().maxVisibleCharacters = 0;
-        tmpro().text = preText;
-        if(preText != "")
-        { 
-            tmpro().ForceMeshUpdate();
-            tmpro().maxVisibleCharacters = tmpro().textInfo.characterCount;
+        Tmpro().color = Tmpro().color;
+        Tmpro().maxVisibleCharacters = 0;
+        Tmpro().text = preText;
+        if (preText != "")
+        {
+            Tmpro().ForceMeshUpdate();
+            Tmpro().maxVisibleCharacters = Tmpro().textInfo.characterCount;
         }
-        tmpro().text += targetText;
-        tmpro().ForceMeshUpdate();
-        
-        
+        Tmpro().text += targetText;
+        Tmpro().ForceMeshUpdate();
+
+
     }
     private void Prepare_Fade()
     {
@@ -156,10 +158,10 @@ public class TextArchitect
     }
     private IEnumerator Buid_Typewriter()
     {
-        while(tmpro().maxVisibleCharacters < tmpro().textInfo.characterCount)
+        while (Tmpro().maxVisibleCharacters < Tmpro().textInfo.characterCount)
         {
-            tmpro().maxVisibleCharacters += hurryUp ? characterPerCycle * 5 : characterPerCycle;
-            yield return new WaitForSeconds(0.015f/speed);
+            Tmpro().maxVisibleCharacters += hurryUp ? characterPerCycle * 5 : characterPerCycle;
+            yield return new WaitForSeconds(0.015f / speed);
         }
     }
     private IEnumerator Buid_Fade()

@@ -11,6 +11,8 @@ public class LogiclLineManager
     {
         logicalLines.Add(new LL_input());
         logicalLines.Add(new LL_Choice());
+        logicalLines.Add(new LL_Operator());
+        logicalLines.Add(new LL_Condition());
     }
     public bool TryGetLogic(DIALOGUE_LINE line, out Coroutine logic)
     {

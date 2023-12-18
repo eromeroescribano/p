@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConversatioQueue
+public class ConversationQueue
 {
-    private Queue<Convesation> convesationsQueue=new Queue<Convesation>();
-    public Convesation top() { return convesationsQueue.Peek();}
+    private Queue<Conversation> convesationsQueue=new Queue<Conversation>();
+    public Conversation top() { return convesationsQueue.Peek();}
 
-    public void Enqueue(Convesation con) { convesationsQueue.Enqueue(con); }
-    public void EnqueuePriority(Convesation con) 
+    public void Enqueue(Conversation con) { convesationsQueue.Enqueue(con); }
+    public void EnqueuePriority(Conversation con) 
     { 
-        Queue<Convesation>queue=new Queue<Convesation>();
+        Queue<Conversation>queue=new Queue<Conversation>();
         queue.Enqueue(con);
         while (convesationsQueue.Count > 0)
         {

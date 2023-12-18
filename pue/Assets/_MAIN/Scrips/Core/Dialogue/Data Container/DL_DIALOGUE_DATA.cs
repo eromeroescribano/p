@@ -10,16 +10,16 @@ using UnityEngine.UIElements;
 public class DL_DIALOGUE_DATA
 {
     private string rawData = string.Empty;
-    public string getRawData() { return rawData; }
+    public string GetRawData() { return rawData; }
     private const string segmentPattern = @"\{[ca]\}|\{w[ca]\s\d*\.?\d*\}";
 
     List<DIALOGUE_SEGMENT> dialogueSegments;
     public List<DIALOGUE_SEGMENT> GetsegmeDialogue() { return dialogueSegments; }
     int maxChar = 500;
     bool MAxim=false;
-    public bool getMAxim() { return MAxim; }
-    public void setMAxim(bool MAxim) { this.MAxim= MAxim; }
-    public bool hasDialogue() { return dialogueSegments.Count > 0; }
+    public bool GetMAxim() { return MAxim; }
+    public void SetMAxim(bool MAxim) { this.MAxim= MAxim; }
+    public bool HasDialogue() { return dialogueSegments.Count > 0; }
     public DL_DIALOGUE_DATA(string rawDialogue)
     {
         rawData= rawDialogue;
@@ -39,10 +39,10 @@ public class DL_DIALOGUE_DATA
 
         DIALOGUE_SEGMENT segment = new DIALOGUE_SEGMENT();
 
-        segment.setDialogue(matches.Count == 0 ? rawDialogue : rawDialogue.Substring(0, matches[0].Index));
+        segment.SetDialogue(matches.Count == 0 ? rawDialogue : rawDialogue.Substring(0, matches[0].Index));
 
-        segment.setDialogueMarks(DIALOGUE_SEGMENT.DialogueSignals.NONE);
-        segment.setSignalDelay(0);
+        segment.SetDialogueMarks(DIALOGUE_SEGMENT.DialogueSignals.NONE);
+        segment.SetSignalDelay(0);
         sumOfAllSegments = Multy(segment, sumOfAllSegments);
 
         if (matches.Count == 0) { return sumOfAllSegments; }
@@ -57,15 +57,15 @@ public class DL_DIALOGUE_DATA
             string matchMark = match.Value;
             matchMark = matchMark.Substring(1, match.Length - 2);
             string[] splitMark = matchMark.Split(' ');
-            segment.setDialogueMarks((DIALOGUE_SEGMENT.DialogueSignals)Enum.Parse(typeof(DIALOGUE_SEGMENT.DialogueSignals), splitMark[0].ToUpper()));
+            segment.SetDialogueMarks((DIALOGUE_SEGMENT.DialogueSignals)Enum.Parse(typeof(DIALOGUE_SEGMENT.DialogueSignals), splitMark[0].ToUpper()));
             if (splitMark.Length > 1)
             {
                 float.TryParse(splitMark[1], System.Globalization.NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture.NumberFormat, out float signalWaitDelayDecimals);
-                segment.setSignalDelay(signalWaitDelayDecimals);
+                segment.SetSignalDelay(signalWaitDelayDecimals);
 
             }
             int nextIndex = i + 1 < matches.Count ? matches[i + 1].Index : rawDialogue.Length;
-            segment.setDialogue(rawDialogue.Substring(lastIndex + match.Length, nextIndex - (lastIndex + match.Length)));
+            segment.SetDialogue(rawDialogue.Substring(lastIndex + match.Length, nextIndex - (lastIndex + match.Length)));
 
             lastIndex = nextIndex;
 
@@ -75,7 +75,7 @@ public class DL_DIALOGUE_DATA
     }
     private List<DIALOGUE_SEGMENT> Multy(DIALOGUE_SEGMENT segmento, List<DIALOGUE_SEGMENT> segmentos)
     {
-        if (segmento.getDialogue().Length < maxChar)
+        if (segmento.GetDialogue().Length < maxChar)
         {
             segmentos.Add(segmento);
             MAxim = false;
@@ -83,23 +83,23 @@ public class DL_DIALOGUE_DATA
         else
         {
             MAxim = true;
-            int len = segmento.getDialogue().Length;
+            int len = segmento.GetDialogue().Length;
             DIALOGUE_SEGMENT semento1 = new DIALOGUE_SEGMENT();
             DIALOGUE_SEGMENT semento2 = new DIALOGUE_SEGMENT();
-            if (segmento.getDialogue()[maxChar] ==' ')
+            if (segmento.GetDialogue()[maxChar] ==' ')
             {
-                semento1.setDialogue(segmento.getDialogue().Substring(0, maxChar));
-                semento2.setDialogue(segmento.getDialogue().Substring( maxChar));
+                semento1.SetDialogue(segmento.GetDialogue().Substring(0, maxChar));
+                semento2.SetDialogue(segmento.GetDialogue().Substring( maxChar));
             }
             else
             {
                 int corte = maxChar;
-                while (segmento.getDialogue()[corte] != ' ')
+                while (segmento.GetDialogue()[corte] != ' ')
                 {
                     --corte;
                 }
-                semento1.setDialogue(segmento.getDialogue().Substring(0, corte));
-                semento2.setDialogue(segmento.getDialogue().Substring(corte));
+                semento1.SetDialogue(segmento.GetDialogue().Substring(0, corte));
+                semento2.SetDialogue(segmento.GetDialogue().Substring(corte));
             }
             segmentos.Add(semento1);
             segmentos.Add(semento2);
@@ -114,21 +114,21 @@ public class DL_DIALOGUE_DATA
         DialogueSignals DialogueMarks;
         float signalDelay;
         public enum DialogueSignals { NONE, C, A, WA, WC }
-        public bool appendText() { return (DialogueMarks == DialogueSignals.A || DialogueMarks == DialogueSignals.WA); }
+        public bool AppendText() { return (DialogueMarks == DialogueSignals.A || DialogueMarks == DialogueSignals.WA); }
 
-        public void setDialogue(string dialogue) { this.dialogue = dialogue; }
-        public void setDialogueMarks(DialogueSignals val)
+        public void SetDialogue(string dialogue) { this.dialogue = dialogue; }
+        public void SetDialogueMarks(DialogueSignals val)
         {
             DialogueMarks = val;
         }
-        public DialogueSignals getDialogueMark()
+        public DialogueSignals GetDialogueMark()
         {
             return DialogueMarks;
         }
 
-        public void setSignalDelay(float signalDelay) { this.signalDelay = signalDelay; }
+        public void SetSignalDelay(float signalDelay) { this.signalDelay = signalDelay; }
         public float GetSignalWaitDelay() { return signalDelay; }
-        public string getDialogue() { return dialogue; }
+        public string GetDialogue() { return dialogue; }
 
     }
 }

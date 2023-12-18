@@ -8,14 +8,14 @@ using static LogicalLineUtils.Expressions;
 
 public class LL_Operator : ILogicalLine
 {
-    public string keyword()
+    public string Keyword()
     {
         throw new System.NotImplementedException();
     }
     public IEnumerator Execute(DIALOGUE_LINE line)
     {
-        string trimmedLine=line.getRawData().Trim();
-        string[] parts= Regex.Split(trimmedLine, REGEX_ARITMATIC);
+        string trimmedLine=line.GetRawData().Trim();
+        string[] parts= Regex.Split(trimmedLine, REGEX_ARITMATIC());
 
         if (parts.Length < 3 ) 
         {
@@ -55,13 +55,13 @@ public class LL_Operator : ILogicalLine
                 VariableStore.TrySetValue(variable, ConcatenateOfAdd(value, currentValue));
                 break;
             case "-=":
-                VariableStore.TrySetValue(variable, Convert.ToDouble(value) - Convert.ToDouble(currentValue));
+                VariableStore.TrySetValue(variable, Convert.ToDouble(currentValue) - Convert.ToDouble(value));
                 break;
             case "*=":
-                VariableStore.TrySetValue(variable, Convert.ToDouble(value) * Convert.ToDouble(currentValue));
+                VariableStore.TrySetValue(variable, Convert.ToDouble(currentValue) * Convert.ToDouble(value));
                 break;
             case "/=":
-                VariableStore.TrySetValue(variable, Convert.ToDouble(value) / Convert.ToDouble(currentValue));
+                VariableStore.TrySetValue(variable, Convert.ToDouble(currentValue) / Convert.ToDouble(value));
                 break;
             default:
                 Debug.LogError($"Invalid operator: {op}");
@@ -78,7 +78,7 @@ public class LL_Operator : ILogicalLine
     }
     public bool Maches(DIALOGUE_LINE lINE)
     {
-        Match match = Regex.Match(lINE.getRawData().Trim(), REGEX_OPERATOR_LINE);
+        Match match = Regex.Match(lINE.GetRawData().Trim(), REGEX_OPERATOR_LINE());
         return match.Success;
     }
 }

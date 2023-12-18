@@ -12,35 +12,34 @@ public class ConversationManager
     private bool userPrompt = false;
     private LogiclLineManager logiclLineManager;
     public TextArchitect GetTextArchitect() { return archit; }
+
     private bool watingAuto = false;
-    public bool getWatingAuto() {  return watingAuto; }
-    private ConversatioQueue conversatioQueue;
-    private Convesation convesation=null;
-    private TagManager tagManager;
-    public Convesation getConvesation()
+    public bool GetWatingAuto() {  return watingAuto; }
+    private ConversationQueue conversatioQueue;
+    //private Conversation convesation=null;
+    public Conversation GetConvesation()
     {
         if (conversatioQueue.IsEmpty())
         {  return null; }
         else
         { return conversatioQueue.top(); }
     }
-    public int getProgress() { return (conversatioQueue.IsEmpty() ? -1 : conversatioQueue.top().getProgress()); }
+    public int GetProgress() { return (conversatioQueue.IsEmpty() ? -1 : conversatioQueue.top().getProgress()); }
     public ConversationManager(TextArchitect textArchitect)
     {
         this.archit = textArchitect;
         DialogueSystem.Instance().AddPrompt_Next(OnUserPrompt_Next);
-        tagManager = new TagManager();
         logiclLineManager = new LogiclLineManager();
-        conversatioQueue = new ConversatioQueue();
+        conversatioQueue = new ConversationQueue();
     }
-    public void Enqueue(Convesation convesation ){ conversatioQueue.Enqueue( convesation ); }
-    public void EnqueuePriority(Convesation convesation ){ conversatioQueue.EnqueuePriority( convesation ); }
+    public void Enqueue(Conversation convesation ){ conversatioQueue.Enqueue( convesation ); }
+    public void EnqueuePriority(Conversation convesation ){ conversatioQueue.EnqueuePriority( convesation ); }
     private void OnUserPrompt_Next()
     { 
         userPrompt = true; 
     }
 
-    public Coroutine StartConversation(Convesation conversation)
+    public Coroutine StartConversation(Conversation conversation)
     {
 
         StopConversation();
@@ -61,7 +60,7 @@ public class ConversationManager
 
         while(!conversatioQueue.IsEmpty())
         {
-            Convesation currentConversation = getConvesation();
+            Conversation currentConversation = GetConvesation();
             
             if(currentConversation.HasReacheEnd())
             {
@@ -83,16 +82,16 @@ public class ConversationManager
             }
             else 
             {
-                if (line.hasDialogue())
+                if (line.HasDialogue())
                 {
                     yield return Line_RunDialogue(line);
                 }
 
-                if (line.hasCommands())
+                if (line.HasCommands())
                 {
                     yield return Line_RunCommands(line);
                 }
-                if (line.hasDialogue())
+                if (line.HasDialogue())
                 {
                     yield return WaitForUserInput();
                 }
@@ -102,7 +101,7 @@ public class ConversationManager
         process = null;
 
     }
-    private void TryAdvanceConversation(Convesation convesation)
+    private void TryAdvanceConversation(Conversation convesation)
     {
         convesation.IncremaentProgres();
         if(convesation != conversatioQueue.top())
@@ -119,16 +118,16 @@ public class ConversationManager
     IEnumerator Line_RunDialogue(DIALOGUE_LINE line)
     {
 
-        if (line.hasSpeaker()) 
+        if (line.HasSpeaker()) 
         { 
-            DialogueSystem.Instance().ShowName(TagManager.Inject(line.GetSpeaker().displayname()));
+            DialogueSystem.Instance().ShowName(TagManager.Inject(line.GetSpeaker().Displayname()));
                 
-            BacklogPanel.Instance().putInTest(@$"{line.GetSpeaker().displayname()} '{line.GetDialogue().getRawData()}'");
+            BacklogPanel.Instance().PutInTest(@$"{line.GetSpeaker().Displayname()} '{line.GetDialogue().GetRawData()}'");
 
         }
         else
         {
-            BacklogPanel.Instance().putInTest(@$"'{line.GetDialogue().getRawData()}'");
+            BacklogPanel.Instance().PutInTest(@$"'{line.GetDialogue().GetRawData()}'");
         }
         yield return BuildLineSegments(line.GetDialogue());
     }
@@ -138,14 +137,14 @@ public class ConversationManager
         {
             DIALOGUE_SEGMENT sement = line.GetsegmeDialogue()[i];
             yield return WaitForDialogueSegmentMarkToBeTriggered(sement);
-            yield return BuildDialogue(sement.getDialogue(), sement.appendText());
+            yield return BuildDialogue(sement.GetDialogue(), sement.AppendText());
 
-            if (line.getMAxim())
+            if (line.GetMAxim())
             {
                 yield return WaitForUserInput();
                 if (i == line.GetsegmeDialogue().Count - 2)
                 {
-                    line.setMAxim(false);
+                    line.SetMAxim(false);
                 }
             }
 
@@ -155,7 +154,7 @@ public class ConversationManager
     IEnumerator WaitForDialogueSegmentMarkToBeTriggered(DIALOGUE_SEGMENT sement)
     {
 
-        switch (sement.getDialogueMark())
+        switch (sement.GetDialogueMark())
         {
             case DIALOGUE_SEGMENT.DialogueSignals.C:
             case DIALOGUE_SEGMENT.DialogueSignals.A:
@@ -176,16 +175,16 @@ public class ConversationManager
     
     IEnumerator Line_RunCommands(DIALOGUE_LINE line)
     {
-        List<DL_COMMAND_DATA.Command> commands = line.GetCommands().getCommands();
-        foreach(DL_COMMAND_DATA.Command command in commands)
+        List<DL_COMMAND_DATA.Command> commands = line.GetCommands().GetCommands();
+        foreach (DL_COMMAND_DATA.Command command in commands)
         {
-            if(command.getWait())
+            if (command.GetWait())
             { 
-                yield return CommandManager.Instance().Execute(command.getName(), command.getArguments());
+                yield return CommandManager.Instance().Execute(command.GetName(), command.GetArguments());
             }
             else
             {
-                CommandManager.Instance().Execute(command.getName(), command.getArguments());
+                CommandManager.Instance().Execute(command.GetName(), command.GetArguments());
             }
         }
         yield return null;
@@ -198,13 +197,13 @@ public class ConversationManager
         { archit.Build(dialogue); }
         else
         { archit.Append(dialogue); }
-        while (archit.isBuilding())
+        while (archit.IsBuilding())
         {
             if (userPrompt)
             {
-                if (!archit.getHurryUp())
+                if (!archit.GetHurryUp())
                 {
-                    archit.setHurryUp(true);
+                    archit.SetHurryUp(true);
                 }
                 else
                 {

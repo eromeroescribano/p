@@ -9,10 +9,10 @@ public class DialogueParser
 
     public static DIALOGUE_LINE Parse(string rawLine)
     {
-
+        Debug.Log($"Parsing line '{rawLine}'");
         (string speaker, string dialogue, string commands) = GetDialogueLineFields(rawLine);
-
-       return new DIALOGUE_LINE(rawLine, speaker, dialogue, commands);
+        Debug.Log($"Speaker = '{speaker}' \n Dialogue= '{dialogue}' \n Comands ='{commands}'");
+        return new DIALOGUE_LINE(rawLine, speaker, dialogue, commands);
     }
     private static (string, string, string) GetDialogueLineFields(string rawLine)
     {

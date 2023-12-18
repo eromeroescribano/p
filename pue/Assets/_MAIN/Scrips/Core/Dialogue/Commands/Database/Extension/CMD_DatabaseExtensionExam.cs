@@ -96,8 +96,8 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
     }
     private static void SavePlayer()
     {
-        /*string name = InputPanel.instance.lastInput;
-        Debug.Log("Nombre jugador " + name);*/
+        string name = InputPanel.Instance().getLastInput();
+        Debug.Log("Nombre jugador " + name);
     }
 
 
@@ -108,19 +108,19 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
     private static void SetMoney(string newMoney)
     {
         int.TryParse(newMoney, out int Money);
-        //PlayerStatusSaveSchema.GetVariablesDictionary()["money"] = Money;
+        PlayerStatusSaveSchema.GetVariablesDictionary()["money"] = Money;
     }
     private static void AddMoney(string moneyToAdd)
     {
         int.TryParse(moneyToAdd, out int Money);
-        //PlayerStatusSaveSchema.GetVariablesDictionary()["money"] += Money;
+        PlayerStatusSaveSchema.GetVariablesDictionary()["money"] += Money;
     }
 
     private static void ModifyVariable(string[] values)
     {
         string variableToModify =values[0];
         int.TryParse(values[1], out int value);
-        //PlayerStatusSaveSchema.GetVariablesDictionary()[variableToModify] += (Int32.Parse(value));
+        PlayerStatusSaveSchema.GetVariablesDictionary()[variableToModify] += (value);
     }
 
     ///possible variables for now:

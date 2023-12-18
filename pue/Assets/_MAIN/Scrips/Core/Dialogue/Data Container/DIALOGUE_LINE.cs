@@ -5,14 +5,14 @@ using UnityEngine;
 public class DIALOGUE_LINE
 {
     private string rawData=string.Empty;
-    public string getRawData() { return rawData; }
+    public string GetRawData() { return rawData; }
     DL_SPEAKER_DATA speaker;
     DL_DIALOGUE_DATA dialogue;
     DL_COMMAND_DATA commands;
 
-    public bool hasSpeaker() { return speaker != null; }//!= string.Empty; }
-    public bool hasDialogue() { return dialogue != null; }
-    public bool hasCommands(){ return commands != null; }
+    public bool HasSpeaker() { return speaker != null; }//!= string.Empty; }
+    public bool HasDialogue() { return dialogue != null; }
+    public bool HasCommands(){ return commands != null; }
 
     public DL_SPEAKER_DATA GetSpeaker() { return speaker; }
     public DL_DIALOGUE_DATA GetDialogue() { return dialogue; }
