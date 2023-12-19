@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
 {
+    private static string[] PARAM_FILEPATH = new string[] {"-f","-file","-filepath" };
+    private static string[] PARAM_ENQUEUE = new string[] {"-e","-enqueue"};
     new public static void Extend(CommandDatabase database)
     {
         //Add Action with no parametrers
@@ -30,8 +33,55 @@ public class CMD_DatabaseExtensionExam : CMD_DatabaseExtension
         database.AddCommand("addMoney", new Action<string>(AddMoney));
         database.AddCommand("modifyVariable", new Action<string[]>(ModifyVariable));
 
+        database.AddCommand("wait",new Func<string,IEnumerator>(Wait));
+        database.AddCommand("load", new Action<string[]>(LoadNewFile));
+        database.AddCommand("loadMini", new Action<string>(ChangeScene));
     }
-    //palbra = decrip 
+    
+    private static void LoadNewFile(string[] data)
+    {
+        string fileName = string.Empty;
+        bool enqueue = false;
+
+        var parameters = ConvertDataToParameters(data);
+        parameters.TryGetValue(PARAM_FILEPATH, out fileName);
+        parameters.TryGetValue(PARAM_ENQUEUE, out enqueue, defaultValue:false);
+        if(fileName == null)
+        {
+            fileName= data[0];
+        }
+        string filePath = FilePaths.GetPathToResource(FilePaths.Resources_dialogueFiles(), fileName);
+        TextAsset file= Resources.Load<TextAsset>(filePath);
+
+        if(file==null)
+        {
+            Debug.LogWarning($"File '{filePath}' could not be loaded from dialogue files. please eunsure it exist whithin the '{FilePaths.Resources_dialogueFiles()}' resouces folder.");
+            return;
+        }
+        List<string> lines = FileManager.ReadTextAsset(file, includeBlankLines:true);
+        Conversation newConversation = new Conversation(lines);
+
+        if(enqueue)
+        {
+            DialogueSystem.Instance().GetConversationManager().Enqueue(newConversation);
+        }
+        else
+        {
+            DialogueSystem.Instance().GetConversationManager().StartConversation(newConversation);
+        }
+    }
+
+    private static IEnumerator Wait(string data)
+    {
+        if(float.TryParse(data,out float time))
+        {
+            yield return new WaitForSeconds(time);
+        }
+    }
+    private static void ChangeScene(string nameScene)
+    {
+        SceneManager.LoadScene(nameScene);
+    }
     private static void PrintDefaultMessage()
     {
         Debug.Log("Printing a default menssage to console.");

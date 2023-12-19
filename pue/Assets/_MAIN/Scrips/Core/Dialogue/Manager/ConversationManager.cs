@@ -43,6 +43,8 @@ public class ConversationManager
     {
 
         StopConversation();
+        conversatioQueue.Clear();
+
         Enqueue( conversation );
         process = DialogueSystem.Instance().StartCoroutine(RunningConversation());
         return process;

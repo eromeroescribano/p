@@ -11,6 +11,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] DialogueContainer dialogueContainer = new DialogueContainer();
     [SerializeField] private Button autoButton;
     [SerializeField] private Button skipButton;
+    [SerializeField] private Button inputButton;
 
 
     private ConversationManager conversatonionManager;
@@ -103,12 +104,14 @@ public class DialogueSystem : MonoBehaviour
             dialogueContainer.Hide();
             autoButton.interactable = false;
             skipButton.interactable = false;
+            inputButton.interactable = false;
         }
         else
         {
             dialogueContainer.Show();
             autoButton.interactable = true;
             skipButton.interactable = true;
+            inputButton.interactable = true;
         }
     }
 

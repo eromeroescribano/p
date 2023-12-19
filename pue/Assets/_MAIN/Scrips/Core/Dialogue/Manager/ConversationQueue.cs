@@ -26,4 +26,6 @@ public class ConversationQueue
         }
     }
     public bool IsEmpty() { return convesationsQueue.Count == 0; }
+
+    public void Clear() {  convesationsQueue.Clear(); }
 }

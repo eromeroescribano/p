@@ -1,0 +1,39 @@
+narrador  "Decides, otra vez más, como muchas veces has hecho en tú vida, perder el tiempo en vez de aprovechar el tiempo."
+
+<player>  "Nah, voy a cenar y me voy a la cama, ya mañana si eso lo veo con calma."
+
+*Transición de que el tiempo pasa hasta la mañana siguiente.*
+
+narrador  "14 de Junio, 8:30 AM"
+
+narrador  "Escuchas un portazo y acto seguido, en un intento de abrir la puerta, la puerta de la habitación se parte por la mitad."
+
+Papá "¡BUENOS DÍAS <player>! ¿AH, QUE SIGUES EN LA CAMA?"
+
+narrador  "Tu padre acerca rápidamente a la cama , tú aun con cansancio, ojos medio cerrados y con una cara de muerte similar a la del caballo en Guernica, de Picasso. "
+
+narrador  "Tu padre coge uno de los lados de la cama y la levanta casi 90º, haciendo que te caiga de cara contra el suelo."
+
+narrador  "Paff”
+
+<player> "QUÉ COJ- ¿!OTRA VEZ!?"
+
+Papá "Y LAS VECES QUE SEAN NECESARIAS JAJAJA. {wa 1 } DESPIERTATE YA."
+
+Papá "EN MEDIA HORA NOS VAMOS A ALASKAA!!{c} POR FIN~~!!"
+
+<player>  "¿Qué?”
+
+Papá "PREPARA TU EQUIPAJE, EN 25 MINUTOS VUELVO A VER QUE TAL VAS."
+
+<player>  "¿Espera, Qué?"
+
+narrador  "Se da media vuelta y se dispone a salir de la habitación, al salir observa que, de nuevo, se ha cargado \"sin querer\"" la puerta de la habitación, al ver esto, se gira nuevamente para verte, que a su vez, con la cara  que es un cuadro."
+
+Papá " Es mia de todas formas "
+
+narrador  "Sale de la habitación en carcajadas ruidosas, ni siquiera hace el esfuerzo de cerrar la puerta medio rota."
+
+<player> "ESPERA, QUEEEE???"
+
+Transición a la pantalla de inicio del juego, Game Over Nº1.

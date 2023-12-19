@@ -1,0 +1,56 @@
+Universidad "Para recibir tu titulo debes indicar tu nombre"
+
+input "Escribe tú nombre y dale \" Acepar \" "
+
+print_mp()
+
+$myName = "<input>"
+
+narrador "Una vez rellenastes los datos te da cuenta que ..."
+
+narrador "Ya es 13 de Junio de 20XX,en tú habitación ,te tumbas en la cama."
+
+<player> "Por fín acabé la dichosa carrera de derecho, aunque bueno, no sé cómo de útil me será en el futuro.."
+
+<player> "Bah.. Ya me preocuparé por eso cuando llegue el momento, ahora mismo estoy cansado de la UNI"
+
+<player> "Necesito un descanso, pero ya. Ir a playita tomar el sol en una hamaca con un refrescante mojito de sandía..{c} Disfrutando de la vida.."
+
+narrador  "Ves un folleto de un resort en el caribe llamado \"Paradise\" entre tanto alboroto de habitación."
+
+<player> "A claro, en la uni el otro día lo daban. Lo cogí por no hacerle el feo a la chica que lo estaba repartiendo, ..." 
+choice "¿ Por qué ?"
+{
+	-Amabilidad 
+	"..ya que si yo estuviera en su lugar, no me gustaría que la gente me ignorase." 
+	$Amabilidad = 1
+	-Ni idea
+	"..aunque pensándolo mejor, la verdad es que no sé por qué lo hice." 
+	$Pragmatismo = 1
+	-Estaba buena
+	"..además que era difícil rechazarla con lo buena que estaba.. jeje." 
+	$Perversión =1
+}
+
+<player> "(Buscaré mejor por internet de todas formas, vamos a ver que dice bendito Google al respecto, así veo algunas reseñas.)"
+
+<player>  "(Huh, vaya.. 4.5 estrellas 12500 reseñas.. suena demasiado bueno para ser verdad.)"
+
+<player>  "Vaya, incluso tienen una promoción actualmente en curso.. Quizá por eso el otro día estaban en la UNI, tiene sentido."
+
+<player>  "Bueno, la verdad es que no tengo nada mejor que hacer, y tampoco tengo ganas de ir otra semana a Roma con la familia.. Dios que vergüenza, una vez fué suficiente."
+
+<player>  "(Si, será mejor que ponga este plan en marcha, antes de que me lleven a dios sabe donde estas vacaciones.)"
+
+narrador  "<player> empieza a buscar y concretar información respecto a la promoción, fechas, y viajes."
+
+<player>  "Vale, puedo estar ahí el 16, dentro de 3 días, y utilizando la promoción, sale bastante bien una estancia VIP de una semana de duración. Suponiendo que empiece ya todo el papeleo y los pagos." 
+choice "¿Que decides hacer?"
+{
+	-Empezar ya a gestionarlo.
+	<player> "Hay que se productivo"
+	load(FirstFinal)
+	-Jugar a algo
+	"..Me da mazo pereza, lo haré mañana. La partida me espera" 
+	loadMini(ball)
+}

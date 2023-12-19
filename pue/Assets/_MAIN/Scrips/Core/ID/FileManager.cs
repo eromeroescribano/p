@@ -9,7 +9,7 @@ public class FileManager
     {
         if (!filePath.StartsWith('/'))
         { 
-            filePath = FilePaths.root + filePath;
+            filePath = FilePaths.Root() + filePath;
         }
 
         List<string> lines = new List<string>();

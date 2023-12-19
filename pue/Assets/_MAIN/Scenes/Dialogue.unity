@@ -658,7 +658,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101633233}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -668,8 +668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 704, y: 0}
-  m_SizeDelta: {x: 20, y: 934.06}
+  m_AnchoredPosition: {x: 700.0999, y: 0.000030517578}
+  m_SizeDelta: {x: 26.99, y: 934.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101633235
 MonoBehaviour:
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277283901}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -2489,7 +2489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -25.205, y: 467.03043}
+  m_AnchoredPosition: {x: -25.205, y: 467.03052}
   m_SizeDelta: {x: 1376.78, y: 152.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &655678876
@@ -5713,8 +5713,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5784,7 +5784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -563, y: 317.4}
+  m_AnchoredPosition: {x: -565.6, y: 316.6}
   m_SizeDelta: {x: -1553.86, y: 81.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1483669638
@@ -6750,6 +6750,7 @@ MonoBehaviour:
     dialogueText: {fileID: 761569708}
   autoButton: {fileID: 1098424960}
   skipButton: {fileID: 909856316}
+  inputButton: {fileID: 0}
   mainCanvas: {fileID: 135552961}
   pront: {fileID: 647808495}
 --- !u!114 &1894086267
@@ -7135,7 +7136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8b125b8e3af664b883e40594ff40b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileToRead: {fileID: 4900000, guid: 93be120a2a0fbaa449e5b76613e79805, type: 3}
+  fileToRead: {fileID: 4900000, guid: 38e34ed009c0c254f832ddb27bea59b6, type: 3}
 --- !u!1 &2118596116
 GameObject:
   m_ObjectHideFlags: 0
