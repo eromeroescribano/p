@@ -1,0 +1,5 @@
+input "¿Cuál es tu nombre?"
+
+$name = "<input>"
+
+narrador "Bienvenido $name "

@@ -1,0 +1,56 @@
+narrador  "me tengo que centrar en gestionarlo todo ahora,{a} cuanto antes mejor, incluso."
+
+narrador  "Un par de horas después,{a} por fín acabo,{a} me desquito del PC un poco fatigado."
+
+<player>  "Alé, por fín.{a} Tengo que preparar el equipaje,{a} pero bueno,{a} eso ya lo haré nada más me despierte mañana,{a} ahora me iré a cenar,{a} ya de paso se lo comento a Papá y Mamá antes de irme a dormir."
+
+narrador "Transición al día siguiente."
+
+narrador  "14 de junio,{a} 8:45 AM."
+
+narrador  "BLEEP BLEEP BLEEP (sonidos de alarma del móvil)" 
+
+<player>  "..5 minutos más o me muero,{a} por favor.." 
+
+narrador  "De repente me acuerdo de la reserva y los viajes que gestioné ayer."
+
+<player>  "..NO!{c} Tengo que centrarme."
+
+narrador  "Me levanto de la cama y me dirijo al baño a pegarme una ducha,{a} después,{a} me tomaré un bol de cereales con leche,{a} ya después,{a} me pongo con el equipaje."
+
+choice "Acabo de terminar la ducha y de desayunar, me echo una partidilla antes de continuar?"
+{
+	-Jugar otro minijuego
+	<player> "ehhh...{c} Una partidilla rápida."
+	loadMini(INSERTAR_NOMBRE_DE_ESCENA_DEL_MINIJUEGO_EQUILIBRIUM)
+	-No, no tengo ganas.
+	<player> "... Nah.{a} Mejor me centro en el equipaje."
+}
+
+narrador  "Ya está todo preparado y solo me ha llevado media hora, perfecto.{a} Iré bajando las cosas a la puerta,{a} ya de paso, voy al salón a despedirme de papá y mamá."
+
+narrador "Transición a salón."
+
+Papá "UNA PENA QUE NO VENGAS CON NOSOTROS A ALASKA, HIJO.{c} TU MADRE SIEMPRE HA QUERIDO IR AHÍ,{a} LOS 3 JUNTOS.{c} BUENO,{a} SEGURO QUE DENTRO DE UNOS POCOS AÑOS,{a} SE REPITE LA OCASIÓN."
+
+Papá "YA SABES,{a} PEGANOS UN TOQUE CUANDO LLEGUES AHÍ,{a} YA SABES COMO SE PONE TU MADRE CUANDO TE VAS DE VIAJE."
+
+<player>  "..Sí,{a} Papá."
+
+Papá "..SABES QUE NOS PREOCUPAMOS POR TÍ,{a} TAN SOLO TE LO RECUERDO PARA QUE NO SE TE OLVIDE,{a} NO QUIERO QUE PASE COMO EL AÑO PASADO."
+
+narrador "no hace falta que me lo recuerdes,{c} recuerdo que mamá empezó de alguna forma,{a} a subir por las paredes de la habitación como si fuese Spiderman,{a} según papá,{a} por los nervios de la incertidumbre de no haber dado señales de vida,{a} cuando ya había llegado a Amsterdam,{c} (se me había olvidado)."
+
+<player>  "Lo sé.{c} No te preocupes,{a} no volverá a pasar."
+
+narrador "Ambos se dan un abrazo y se despiden."
+
+<player>  "Bueno,{a} voy tirando que si no pierdo el vuelo."
+
+Papá "VENGA, HIJO.{a} VE CON DIOS.{c} YA AVISARÉ A TU MADRE CUANDO SALGA DEL BAÑO."
+
+<player>  "Gracias Papá.{c} Pasarlo bien en Alaska.{a} Mandarme fotitos,{a} ¿Ok?"
+
+Papá "LO MISMO TE DIGO, JAJAJA."
+
+narrador "<player> recoge sus cosas,{a} sale de casa y se mete en el Uber contratado para ir al aeropuerto más cercano para emprender su viaje a Paradise."

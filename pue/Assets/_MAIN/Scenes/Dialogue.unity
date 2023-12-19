@@ -936,7 +936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca771f0dbe44a34695ace24aba0068e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 3bbc786acf5ad2a429be936100d40528, type: 2}
 --- !u!1 &135552956
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,7 +6749,7 @@ MonoBehaviour:
     dialogueText: {fileID: 761569708}
   autoButton: {fileID: 1098424960}
   skipButton: {fileID: 909856316}
-  inputButton: {fileID: 0}
+  inputButton: {fileID: 1307557793}
   mainCanvas: {fileID: 135552961}
   pront: {fileID: 647808495}
 --- !u!114 &1894086267
@@ -7136,7 +7135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8b125b8e3af664b883e40594ff40b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileToRead: {fileID: 4900000, guid: 38e34ed009c0c254f832ddb27bea59b6, type: 3}
+  fileToRead: {fileID: 4900000, guid: 3097781255b155a4c88c55512d30967c, type: 3}
 --- !u!1 &2118596116
 GameObject:
   m_ObjectHideFlags: 0

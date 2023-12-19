@@ -1,0 +1,46 @@
+input "¿Cómo te llamas?"
+$name = "<input>"
+
+narrador"13 de Junio de 20XX, en la habitación de un chaval desquiciado, tirado en la cama, nuestro protagonista de la historia."
+
+<player> "Por fín acabé la dichosa carrera de derecho, aunque bueno, no sé cómo de útil me será en el futuro.."
+
+<player> "Bah.. Ya me preocuparé por eso cuando llegue el momento, ahora mismo estoy hasta los huevos de estudiar leyes, juicios, historia y burocracia administrativa"
+
+<player> "Necesito un descanso, pero ya. Irme a algún lado y olvidarme de todo.. Uff lo que daría por estar en la playita tomando el sol en una hamaca con un refrescante mojito de sandía.. disfrutando de la vida.."
+<player> "Hmm.. Eso me recuerda, en la uni el otro día estaban repartiendo cartitas de publicidad de un resort en el caribe llamado \"Paradise\". Cogí uno por no hacerle el feo a la chica que lo estaba repartiendo, ..."
+choice "¿Por qué lo hice?"
+{
+	-Amabilidad
+		<player> "..ya que si yo estuviera en su lugar, no me gustaría que la gente me ignorase." 
+		$amabilidad = 1
+	-Sin motivo
+		<player> "..aunque pensándolo mejor, la verdad es que no sé por qué lo hice." 
+		$pragmatismo = 1
+	-Estaba buena
+		<player> "..además que era difícil rechazarla con lo buena que estaba.. jeje." 
+		$perversión = 1
+}
+narrador "<player> rebusca en sus bolsillos… Sin éxito. Empieza a hacer equilibrio para no salir de la cama y coger unos vaqueros desgastados grises tirados en el suelo, que tampoco tienen nada en los bolsillos."
+
+<player> "(¿Donde diantres la puse? Ah, creo que sigue en la mochila. Que le dén, está demasiado lejos, paso de ir a por ella. Buscaré mejor por internet de todas formas, vamos a ver que dice bendito Google al respecto, ya de paso me veo algunas reseñas.)"
+
+<player> "(Huh, vaya.. 4.5 estrellas 12500 reseñas.. suena demasiado bueno para ser verdad.)"
+
+<player> "Vaya, incluso tienen una promoción actualmente en curso.. Quizá por eso el otro día estaban repartiendo las cartitas al respecto, tiene sentido."
+
+<player> "Bueno, la verdad es que no tengo nada mejor que hacer, y tampoco tengo ganas de ir otra semana a Roma con la familia.. Dios que vergüenza, una vez fué suficiente."
+
+<player> "(Si, será mejor que ponga este plan en marcha, antes de que me lleven a dios sabe donde estas vacaciones.)"
+
+narrador "Noah empieza a buscar y concretar información respecto a la promoción, fechas, y viajes."
+
+<player> "Vale, como muy pronto, puedo estar ahí el 16, dentro de 3 días, y si utilizo la promoción, sale bastante bien una estancia VIP de una semana de duración. Suponiendo que empiece ya todo el papeleo y los pagos."
+choice "¿ Qué deberia hacer ?"
+{
+	-Empezar ya a gestionarlo.
+		 SALTO A ESCENA 03
+	-Hacerlo mañana
+		<player> "..Me da mazo pereza, lo haré mañana."
+		SALTO A ESCENA 02
+}
